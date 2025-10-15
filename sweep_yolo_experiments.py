@@ -160,7 +160,12 @@ def run_one(model_path, yaml_path, project, base_overrides, exp_name, exp_overri
         **base_overrides,
         **exp_overrides
     )
-
+    if exp_name == "resume_from_ckpt":
+        args['resume'] = True
+        # Xóa các key có thể gây xung đột để đảm bảo an toàn
+        args.pop('optimizer', None)
+        args.pop('lr0', None)
+        
     print(f"\n===== TRAIN: {run_name} =====")
     print(json.dumps(args, indent=2))
     results = model.train(**args)
