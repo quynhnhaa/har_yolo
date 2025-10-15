@@ -66,7 +66,10 @@ def default_experiments():
     #         dropout=0.1,
     #     )
     # ))
-
+    exps.append((
+        "resume_from_ckpt",
+        dict()  # Dictionary rỗng, không ghi đè gì cả
+    ))
     # 4) Heavy augmentation (AdamW), 200 epochs — overfitting control
     exps.append((
         "heavy_aug_adamw_200",
